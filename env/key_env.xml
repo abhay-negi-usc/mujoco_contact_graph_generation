@@ -1,0 +1,219 @@
+<mujoco>
+    <option timestep=".001">
+        <flag energy="enable" contact="enable" override="enable"/>
+    </option>
+
+    <default>
+        <default class="hole_geom">
+            <geom xyaxes="1 0 0 0 1 0" rgba="0 0 1 0.2"/>
+        </default>
+        <site size="0.0002" />
+        <geom friction="5" />
+    </default>
+
+    <visual>
+        <global offwidth="960" offheight="720"/>
+    </visual>
+
+    <asset>
+        <mesh name="peg1" file="../asset/key_peg/key_peg/decomposition/Body1.stl" />
+        <mesh name="peg2" file="../asset/key_peg/key_peg/decomposition/Body2.stl" />
+
+        <mesh name="hole1" file="../asset/key_peg/key_hole/decomposition/Body1.stl" />
+        <mesh name="hole2" file="../asset/key_peg/key_hole/decomposition/Body2.stl" />
+        <mesh name="hole3" file="../asset/key_peg/key_hole/decomposition/Body3.stl" />
+        <mesh name="hole4" file="../asset/key_peg/key_hole/decomposition/Body4.stl" />
+        <mesh name="hole5" file="../asset/key_peg/key_hole/decomposition/Body5.stl" />
+        <mesh name="hole6" file="../asset/key_peg/key_hole/decomposition/Body6.stl" />
+        <mesh name="hole7" file="../asset/key_peg/key_hole/decomposition/Body7.stl" />
+        <mesh name="hole8" file="../asset/key_peg/key_hole/decomposition/Body8.stl" />
+        <mesh name="hole9" file="../asset/key_peg/key_hole/decomposition/Body9.stl" />
+        <mesh name="hole10" file="../asset/key_peg/key_hole/decomposition/Body10.stl" />
+        <mesh name="hole11" file="../asset/key_peg/key_hole/decomposition/Body11.stl" />
+        <mesh name="hole12" file="../asset/key_peg/key_hole/decomposition/Body12.stl" />
+        <mesh name="hole13" file="../asset/key_peg/key_hole/decomposition/Body13.stl" />
+        <mesh name="hole14" file="../asset/key_peg/key_hole/decomposition/Body14.stl" />
+        <mesh name="hole15" file="../asset/key_peg/key_hole/decomposition/Body15.stl" />
+        <mesh name="hole16" file="../asset/key_peg/key_hole/decomposition/Body16.stl" />
+        <mesh name="hole17" file="../asset/key_peg/key_hole/decomposition/Body17.stl" />
+        <mesh name="hole18" file="../asset/key_peg/key_hole/decomposition/Body18.stl" />
+        <mesh name="hole19" file="../asset/key_peg/key_hole/decomposition/Body19.stl" />
+        <mesh name="hole20" file="../asset/key_peg/key_hole/decomposition/Body20.stl" />
+        <mesh name="hole21" file="../asset/key_peg/key_hole/decomposition/Body21.stl" />
+        <mesh name="hole22" file="../asset/key_peg/key_hole/decomposition/Body22.stl" />
+        <mesh name="hole23" file="../asset/key_peg/key_hole/decomposition/Body23.stl" />
+        <mesh name="hole24" file="../asset/key_peg/key_hole/decomposition/Body24.stl" />
+        <mesh name="hole25" file="../asset/key_peg/key_hole/decomposition/Body25.stl" />
+        <mesh name="hole26" file="../asset/key_peg/key_hole/decomposition/Body26.stl" />
+        <mesh name="hole27" file="../asset/key_peg/key_hole/decomposition/Body27.stl" />
+        <mesh name="hole28" file="../asset/key_peg/key_hole/decomposition/Body28.stl" />
+        <mesh name="hole29" file="../asset/key_peg/key_hole/decomposition/Body29.stl" />
+        <mesh name="hole30" file="../asset/key_peg/key_hole/decomposition/Body30.stl" />
+        <mesh name="hole31" file="../asset/key_peg/key_hole/decomposition/Body31.stl" />
+        <mesh name="hole32" file="../asset/key_peg/key_hole/decomposition/Body32.stl" />
+        <mesh name="hole33" file="../asset/key_peg/key_hole/decomposition/Body33.stl" />
+        <mesh name="hole34" file="../asset/key_peg/key_hole/decomposition/Body34.stl" />
+        <mesh name="hole35" file="../asset/key_peg/key_hole/decomposition/Body35.stl" />
+        <mesh name="hole36" file="../asset/key_peg/key_hole/decomposition/Body36.stl" />
+        <mesh name="hole37" file="../asset/key_peg/key_hole/decomposition/Body37.stl" />
+        <mesh name="hole38" file="../asset/key_peg/key_hole/decomposition/Body38.stl" />
+        <mesh name="hole39" file="../asset/key_peg/key_hole/decomposition/Body39.stl" />
+        <mesh name="hole40" file="../asset/key_peg/key_hole/decomposition/Body40.stl" />
+        <mesh name="hole41" file="../asset/key_peg/key_hole/decomposition/Body41.stl" />
+        <mesh name="hole42" file="../asset/key_peg/key_hole/decomposition/Body42.stl" />
+        <mesh name="hole43" file="../asset/key_peg/key_hole/decomposition/Body43.stl" />
+        <mesh name="hole44" file="../asset/key_peg/key_hole/decomposition/Body44.stl" />
+        <mesh name="hole45" file="../asset/key_peg/key_hole/decomposition/Body45.stl" />
+        <mesh name="hole46" file="../asset/key_peg/key_hole/decomposition/Body46.stl" />
+        <mesh name="hole47" file="../asset/key_peg/key_hole/decomposition/Body47.stl" />
+        <mesh name="hole48" file="../asset/key_peg/key_hole/decomposition/Body48.stl" />
+        <mesh name="hole49" file="../asset/key_peg/key_hole/decomposition/Body49.stl" />
+        <mesh name="hole50" file="../asset/key_peg/key_hole/decomposition/Body50.stl" />
+        <mesh name="hole51" file="../asset/key_peg/key_hole/decomposition/Body51.stl" />
+        <mesh name="hole52" file="../asset/key_peg/key_hole/decomposition/Body52.stl" />
+        <mesh name="hole53" file="../asset/key_peg/key_hole/decomposition/Body53.stl" />
+        <mesh name="hole54" file="../asset/key_peg/key_hole/decomposition/Body54.stl" />
+        <mesh name="hole55" file="../asset/key_peg/key_hole/decomposition/Body55.stl" />
+        <mesh name="hole56" file="../asset/key_peg/key_hole/decomposition/Body56.stl" />
+
+        <texture name="grid" type="2d" file="../asset/green_tex.png" />     
+        <material name="grid" texture="grid" texrepeat="6 6" texuniform="true" reflectance="0.0" />
+    </asset>
+
+    <worldbody>
+        <site name="world" pos="0 0 0" size="0.0001" />
+        <light name="top-light" pos="0.0 0.0 0.5" mode="targetbodycom" target="peg"
+            castshadow="false" ambient=".8 .8 .8" />
+        <!-- <camera name="track" mode="fixed" pos="-0.015 .065 .035" xyaxes="-0.67 -0.2 0 0 -0.1 0.2" /> -->
+        <!-- <camera name="track" mode="trackcom" pos="-0.05 .2 .04" xyaxes="-0.67 -0.2 0 0 -0.3 0.8" /> -->
+        <!-- <camera name="track_topview" mode="trackcom" pos="-0.05 .1 .13" xyaxes="-0.67 -0.2 0 0 -0.3 0.2" /> -->
+
+        <!-- <geom name="ground" type="plane" pos="0 0 -0.1" size="1 1 0.01" material="grid"
+            friction=".1" /> -->
+
+        <body name="hole" pos="0 0 0">
+
+            <camera name="track" mode="track" pos="+0.03 -0.01 0.01" euler="-0 +60 90" fovy="69.4"/>
+
+            <inertial pos="0 0 0" mass="0.1" diaginertia="0.1 0.1 0.1" />
+
+            <geom type="mesh" mesh="hole1" class="hole_geom"/>
+            <geom type="mesh" mesh="hole2" class="hole_geom"/>
+            <geom type="mesh" mesh="hole3" class="hole_geom"/>
+            <geom type="mesh" mesh="hole4" class="hole_geom"/>
+            <geom type="mesh" mesh="hole5" class="hole_geom"/>
+            <geom type="mesh" mesh="hole6" class="hole_geom"/>
+            <geom type="mesh" mesh="hole7" class="hole_geom"/>
+            <geom type="mesh" mesh="hole8" class="hole_geom"/>
+            <geom type="mesh" mesh="hole9" class="hole_geom"/>
+            <geom type="mesh" mesh="hole10" class="hole_geom"/>
+            <geom type="mesh" mesh="hole11" class="hole_geom"/>
+            <geom type="mesh" mesh="hole12" class="hole_geom"/>
+            <geom type="mesh" mesh="hole13" class="hole_geom"/>
+            <geom type="mesh" mesh="hole14" class="hole_geom"/>
+            <geom type="mesh" mesh="hole15" class="hole_geom"/>
+            <geom type="mesh" mesh="hole16" class="hole_geom"/>
+            <geom type="mesh" mesh="hole17" class="hole_geom"/>
+            <geom type="mesh" mesh="hole18" class="hole_geom"/>
+            <geom type="mesh" mesh="hole19" class="hole_geom"/>
+            <geom type="mesh" mesh="hole20" class="hole_geom"/>
+            <geom type="mesh" mesh="hole21" class="hole_geom"/>
+            <geom type="mesh" mesh="hole22" class="hole_geom"/>
+            <geom type="mesh" mesh="hole23" class="hole_geom"/>
+            <geom type="mesh" mesh="hole24" class="hole_geom"/>
+            <geom type="mesh" mesh="hole25" class="hole_geom"/>
+            <geom type="mesh" mesh="hole26" class="hole_geom"/>
+            <geom type="mesh" mesh="hole27" class="hole_geom"/>
+            <geom type="mesh" mesh="hole28" class="hole_geom"/>
+            <geom type="mesh" mesh="hole29" class="hole_geom"/>
+            <geom type="mesh" mesh="hole30" class="hole_geom"/>
+            <geom type="mesh" mesh="hole31" class="hole_geom"/>
+            <geom type="mesh" mesh="hole32" class="hole_geom"/>
+            <geom type="mesh" mesh="hole33" class="hole_geom"/>
+            <geom type="mesh" mesh="hole34" class="hole_geom"/>
+            <geom type="mesh" mesh="hole35" class="hole_geom"/>
+            <geom type="mesh" mesh="hole36" class="hole_geom"/>
+            <geom type="mesh" mesh="hole37" class="hole_geom"/>
+            <geom type="mesh" mesh="hole38" class="hole_geom"/>
+            <geom type="mesh" mesh="hole39" class="hole_geom"/>
+            <geom type="mesh" mesh="hole40" class="hole_geom"/>
+            <geom type="mesh" mesh="hole41" class="hole_geom"/>
+            <geom type="mesh" mesh="hole42" class="hole_geom"/>
+            <geom type="mesh" mesh="hole43" class="hole_geom"/>
+            <geom type="mesh" mesh="hole44" class="hole_geom"/>
+            <geom type="mesh" mesh="hole45" class="hole_geom"/>
+            <geom type="mesh" mesh="hole46" class="hole_geom"/>
+            <geom type="mesh" mesh="hole47" class="hole_geom"/>
+            <geom type="mesh" mesh="hole48" class="hole_geom"/>
+            <geom type="mesh" mesh="hole49" class="hole_geom"/>
+            <geom type="mesh" mesh="hole50" class="hole_geom"/>
+            <geom type="mesh" mesh="hole51" class="hole_geom"/>
+            <geom type="mesh" mesh="hole52" class="hole_geom"/>
+            <geom type="mesh" mesh="hole53" class="hole_geom"/>
+            <geom type="mesh" mesh="hole54" class="hole_geom"/>
+            <geom type="mesh" mesh="hole55" class="hole_geom"/>
+            <geom type="mesh" mesh="hole56" class="hole_geom"/>
+
+
+        </body>
+
+        <body name="flage" pos="0.001 0.000 -0.007"> 
+
+            <site name="peg/external/motor" pos="0 0 0" />
+
+            <!-- <camera name="track" mode="track" pos="+0.03 -0.01 0.01" euler="-0 +60 90" fovy="69.4"/> -->
+
+            <joint name="trans_x" type="slide" axis="1 0 0" limited="false"/>
+            <joint name="trans_y" type="slide" axis="0 1 0" limited="false"/>
+            <joint name="trans_z" type="slide" axis="0 0 1" limited="false"/>
+            <joint name="hinge_x" type="hinge" axis="1 0 0" limited="false"/>
+            <joint name="hinge_y" type="hinge" axis="0 1 0" limited="false"/>
+            <joint name="hinge_z" type="hinge" axis="0 0 1" limited="false"/>
+
+
+            <body name="peg" pos="0 0 0">
+
+                <inertial pos="-0.00665 0.00795 0.08289" mass="1.41" diaginertia="0.1 0.1 0.1" />
+
+                <site name="peg/origin" pos="0 0 0" />
+                <site name="peg/peg" pos="0 0 -0.01" />
+                <site name="peg/tip" pos="0 0 -0.035" />
+                <!-- <site name="peg/base" pos="0 0 0.01" /> -->
+                <!-- <site name="peg/external/ati_sensor" pos="0 0 0.0388" /> -->
+
+                <!-- <site name="peg/peg_bottom_1" pos="0.0125 0.0025 -0.035" />
+                <site name="peg/peg_bottom_2" pos="0.0125 -0.0025 -0.035" />
+                <site name="peg/peg_bottom_3" pos="0.0025 0.0125 -0.035" />
+                <site name="peg/peg_bottom_4" pos="-0.0025 0.0125 -0.035" />
+                <site name="peg/peg_bottom_5" pos="-0.0125 0.0025 -0.035" />
+                <site name="peg/peg_bottom_6" pos="-0.0125 -0.0025 -0.035" />
+                <site name="peg/peg_bottom_7" pos="0.0025 -0.0125 -0.035" />
+                <site name="peg/peg_bottom_8" pos="-0.0025 -0.0125 -0.035" /> -->
+    
+                <geom type="mesh" mesh="peg1" xyaxes="1 0 0 0 1 0" rgba="1 0 0 0.3"/>
+                <geom type="mesh" mesh="peg2" xyaxes="1 0 0 0 1 0" rgba="1 0 0 0.3"/>
+            </body>
+        </body>
+
+    </worldbody>
+
+    <!-- <custom>
+        <numeric name="sites_on_peg_bottom" data="8"/>
+    </custom> -->
+
+    <!-- <actuator>
+        <position name="x" forcelimited="true" forcerange="-20 20" joint="trans_x" kp="3000" kv="50" />
+        <position name="y" forcelimited="true" forcerange="-20 20" joint="trans_y" kp="3000" kv="50" />
+        <position name="z" forcelimited="true" forcerange="-20 20" joint="trans_z" kp="3000" kv="50" />
+        <position name="rx" forcelimited="true" forcerange="-5 5" joint="hinge_x" kp="50" kv="5" />
+        <position name="ry" forcelimited="true" forcerange="-5 5" joint="hinge_y" kp="50" kv="5"/>
+        <position name="rz" forcelimited="true" forcerange="-5 5" joint="hinge_z" kp="50" kv="5"/>
+    </actuator>  -->
+
+    <!-- <sensor>
+        <force name="force_sensor" site="peg/external/motor" />
+        <torque name="torque_sensor" site="peg/external/motor" />
+        <framepos name="peg_pos" objtype="site" objname="peg/peg"/>
+        <framequat name="peg_quat" objtype="site" objname="peg/peg"/>
+    </sensor> -->
+</mujoco>
