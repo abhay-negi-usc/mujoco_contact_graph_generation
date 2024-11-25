@@ -24,8 +24,8 @@ def main():
     with open(training_params_file, "r") as file:
         training_param_dict = json.load(file)
 
-    trainer = Pose2ContactStateTrainer(training_folder, training_param_dict)
-    # trainer = Wrench2ContactStateTrainer(training_folder, training_param_dict)
+    # trainer = Pose2ContactStateTrainer(training_folder, training_param_dict)
+    trainer = Wrench2ContactStateTrainer(training_folder, training_param_dict)
     trainer.train()
 
 
