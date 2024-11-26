@@ -95,6 +95,11 @@ class Wrench2ContactStateDataset(Dataset):
 
         self.data = self.data[self.wrench_column_headings + self.normalized_wrench_column_headings + self.peg_hole_classes_nonzero] 
         
+        # TODO: ablations to perform 
+        # self.data = self.data[self.wrench_column_headings + self.peg_hole_classes_nonzero] 
+        # self.data = self.data[self.normalized_wrench_column_headings + self.peg_hole_classes_nonzero] 
+        
+        
         # shuffle data 
         self.data = self.data.sample(frac=1, random_state=seed).reset_index(drop=True) 
 
@@ -112,6 +117,10 @@ class Wrench2ContactStateDataset(Dataset):
             raise IndexError("Index out of bounds") 
         
         input = self.data.loc[idx, self.wrench_column_headings+self.normalized_wrench_column_headings].values 
+
+        # TODO: ablations to perform 
+        # input = self.data.loc[idx, self.wrench_column_headings].values 
+        # input = self.data.loc[idx, self.normalized_wrench_column_headings].values 
 
         output = self.data.loc[idx, self.peg_hole_classes_nonzero].values 
 

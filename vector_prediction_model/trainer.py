@@ -132,7 +132,7 @@ class Wrench2ContactStateTrainer:
             print("CUDA not available, using CPU instead") 
         
         N_classes = 39 # FIXME: there's probably a cleaner way to make this a function of the data input 
-        self.model = BinaryVectorPredictor([11, 128, 128, N_classes]).to(self.device)  
+        self.model = BinaryVectorPredictor([11, 128, 128, 128, 128, 128, 128, 128, 128, N_classes]).to(self.device)  
 
         self.batch_size = training_param_dict["batch_size"]
         self.num_epochs = training_param_dict["epochs"]
