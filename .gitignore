@@ -1,1 +1,5 @@
 results/
+*.log
+*.pth 
+*.pyc 
+wandb/ 

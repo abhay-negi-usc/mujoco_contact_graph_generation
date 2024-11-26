@@ -1,9 +1,9 @@
 {
     "seed": 42,
     "device": "cuda",
-    "batch_size": 128,
+    "batch_size": 10,
     "epochs": 1000,
-    "learning_rate": 1e-2,
+    "learning_rate": 1e-4,
     "weight_decay": 0.0001,
     "log_freq": 10,
     "dataset_file": "/media/rp/Elements/abhay_ws/mujoco_contact_graph_generation/results/data_v5/processed_data/state_hist_all.csv",
