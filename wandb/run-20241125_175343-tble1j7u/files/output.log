@@ -1,0 +1,39 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/rp/abhay_ws/mujoco_contact_graph_generation/vector_prediction_model/train.py", line 33, in <module>
+    main()
+  File "/home/rp/abhay_ws/mujoco_contact_graph_generation/vector_prediction_model/train.py", line 28, in main
+    trainer = Wrench2ContactStateTrainer(training_folder, training_param_dict)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rp/abhay_ws/mujoco_contact_graph_generation/vector_prediction_model/trainer.py", line 225, in __init__
+    self.optimizer = torch.optim.SGD(
+                     ^^^^^^^^^^^^^^^^
+  File "/home/rp/miniconda3/envs/peg_in_hole_dm_env/lib/python3.12/site-packages/torch/optim/sgd.py", line 61, in __init__
+    super().__init__(params, defaults)
+  File "/home/rp/miniconda3/envs/peg_in_hole_dm_env/lib/python3.12/site-packages/torch/optim/optimizer.py", line 371, in __init__
+    self.add_param_group(cast(dict, param_group))
+  File "/home/rp/miniconda3/envs/peg_in_hole_dm_env/lib/python3.12/site-packages/torch/_compile.py", line 27, in inner
+    import torch._dynamo
+  File "/home/rp/miniconda3/envs/peg_in_hole_dm_env/lib/python3.12/site-packages/torch/_dynamo/__init__.py", line 3, in <module>
+    from . import convert_frame, eval_frame, resume_execution
+  File "/home/rp/miniconda3/envs/peg_in_hole_dm_env/lib/python3.12/site-packages/torch/_dynamo/convert_frame.py", line 31, in <module>
+    from torch._dynamo.utils import CompileTimeInstructionCounter
+  File "/home/rp/miniconda3/envs/peg_in_hole_dm_env/lib/python3.12/site-packages/torch/_dynamo/utils.py", line 89, in <module>
+    import torch._numpy as tnp
+  File "/home/rp/miniconda3/envs/peg_in_hole_dm_env/lib/python3.12/site-packages/torch/_numpy/__init__.py", line 5, in <module>
+    from ._funcs import *  # noqa: F403
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rp/miniconda3/envs/peg_in_hole_dm_env/lib/python3.12/site-packages/torch/_numpy/_funcs.py", line 41, in <module>
+    decorated = normalizer(func)
+                ^^^^^^^^^^^^^^^^
+  File "/home/rp/miniconda3/envs/peg_in_hole_dm_env/lib/python3.12/site-packages/torch/_numpy/_normalizations.py", line 259, in normalizer
+    return normalizer_inner(_func)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rp/miniconda3/envs/peg_in_hole_dm_env/lib/python3.12/site-packages/torch/_numpy/_normalizations.py", line 205, in normalizer_inner
+    @functools.wraps(func)
+     ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rp/miniconda3/envs/peg_in_hole_dm_env/lib/python3.12/functools.py", line 35, in update_wrapper
+    def update_wrapper(wrapper,
+
+KeyboardInterrupt

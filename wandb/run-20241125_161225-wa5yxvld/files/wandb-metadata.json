@@ -1,0 +1,45 @@
+{
+  "os":  "Linux-5.15.0-124-generic-x86_64-with-glibc2.31",
+  "python":  "3.12.5",
+  "startedAt":  "2024-11-26T00:12:25.156622Z",
+  "args":  [
+    "-p",
+    "./vector_prediction_model/training_parameters.json"
+  ],
+  "program":  "-m vector_prediction_model.train",
+  "git":  {
+    "remote":  "git@github.com:abhay-negi-usc/mujoco_contact_graph_generation.git",
+    "commit":  "33628e678df04d728f7fc3e7fe5f68dc309a1320"
+  },
+  "email":  "hantaoye@usc.edu",
+  "root":  "/home/rp/abhay_ws/mujoco_contact_graph_generation",
+  "host":  "boeing--Aegis-RS",
+  "username":  "rp",
+  "executable":  "/home/rp/miniconda3/envs/peg_in_hole_dm_env/bin/python",
+  "cpu_count":  16,
+  "cpu_count_logical":  24,
+  "gpu":  "NVIDIA GeForce RTX 4070 Ti",
+  "gpu_count":  1,
+  "disk":  {
+    "/":  {
+      "total":  "1967317549056",
+      "used":  "1766759174144"
+    }
+  },
+  "memory":  {
+    "total":  "33487831040"
+  },
+  "cpu":  {
+    "count":  16,
+    "countLogical":  24
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "NVIDIA GeForce RTX 4070 Ti",
+      "memoryTotal":  "12878610432",
+      "cudaCores":  7680,
+      "architecture":  "Ada"
+    }
+  ],
+  "cudaVersion":  "12.2"
+}

@@ -1,0 +1,32 @@
+> /home/rp/abhay_ws/mujoco_contact_graph_generation/vector_prediction_model/dataloader.py(67)_load_data()
+-> self.data = pd.read_csv(self.data_path)
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/rp/abhay_ws/mujoco_contact_graph_generation/vector_prediction_model/train.py", line 33, in <module>
+    main()
+  File "/home/rp/abhay_ws/mujoco_contact_graph_generation/vector_prediction_model/train.py", line 28, in main
+    trainer = Wrench2ContactStateTrainer(training_folder, training_param_dict)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rp/abhay_ws/mujoco_contact_graph_generation/vector_prediction_model/trainer.py", line 218, in __init__
+    super().__init__(training_folder, training_param_dict)
+  File "/home/rp/abhay_ws/mujoco_contact_graph_generation/vector_prediction_model/trainer.py", line 35, in __init__
+    self.setup_dataloaders()
+  File "/home/rp/abhay_ws/mujoco_contact_graph_generation/vector_prediction_model/trainer.py", line 58, in setup_dataloaders
+    dataset = self._get_dataset_class()(self.dataset_filename)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rp/abhay_ws/mujoco_contact_graph_generation/vector_prediction_model/dataloader.py", line 130, in __init__
+    super().__init__(data_path, filter_out_no_contact, seed)  # superclass
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rp/abhay_ws/mujoco_contact_graph_generation/vector_prediction_model/dataloader.py", line 51, in __init__
+    self._load_data()
+  File "/home/rp/abhay_ws/mujoco_contact_graph_generation/vector_prediction_model/dataloader.py", line 67, in _load_data
+    self.data = pd.read_csv(self.data_path)
+                ^^
+  File "/home/rp/miniconda3/envs/peg_in_hole_dm_env/lib/python3.12/bdb.py", line 90, in trace_dispatch
+    return self.dispatch_line(frame)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rp/miniconda3/envs/peg_in_hole_dm_env/lib/python3.12/bdb.py", line 115, in dispatch_line
+    if self.quitting: raise BdbQuit
+                      ^^^^^^^^^^^^^
+bdb.BdbQuit
