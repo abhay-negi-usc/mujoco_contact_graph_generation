@@ -28,24 +28,21 @@ class BaseContactStateDataset(Dataset):
         self.seed = seed
 
         # Initialize peg-hole class combinations
-        self.hole_classes = [
-            "HF1",
-            "HF2",
-            "HE1",
-            "HE2",
-            "HE3",
-            "HE4",
-            "HE5",
-            "HE6",
-            "HV1",
-            "HV2",
-            "HV3",
-            "HV4",
-        ]
-        self.peg_classes = ["PF1", "PF2", "PF3", "PF4", "PE1", "PE2", "PE3", "PE4"]
-        self.peg_hole_classes = [
-            f"{h}-{p}" for h in self.hole_classes for p in self.peg_classes
-        ]
+        if peg_type == 'key': 
+            hole_classes = ['HF1','HF2','HE1','HE2','HE3','HE4','HE5','HE6','HV1','HV2','HV3','HV4'] 
+            peg_classes = ['PF1','PF2','PF3','PF4','PE1','PE2','PE3','PE4'] 
+            self.peg_hole_classes = [] 
+            for hole_class in hole_classes: 
+                for peg_class in peg_classes: 
+                    self.peg_hole_classes.append(f'{hole_class}-{peg_class}') 
+        elif peg_type == 'plug_3_pin':
+            hole_classes = ['HOLE1','HOLE2','HOLE3','TOP'] 
+            peg_classes = ['PIN1','PIN2','PIN3','BASE'] 
+            self.peg_hole_classes = [] 
+            for hole_class in hole_classes: 
+                for peg_class in peg_classes: 
+                    self.peg_hole_classes.append(f'{hole_class}-{peg_class}') 
+        
 
         # Load or get cached data
         self._load_data()

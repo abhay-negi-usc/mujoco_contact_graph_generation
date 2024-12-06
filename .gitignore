@@ -1,5 +1,10 @@
 results/
+wandb/
 *.log
 *.pth 
 *.pyc 
 wandb/ 
+
+*.obj
+*.mtl
+*.pyc
