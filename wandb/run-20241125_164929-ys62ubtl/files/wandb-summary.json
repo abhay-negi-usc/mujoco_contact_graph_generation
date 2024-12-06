@@ -1,1 +1,0 @@
-{"_timestamp":1.7325821922853062e+09,"avg_time_per_iter":0.009441734382230449,"_wandb":{"runtime":23},"train_acc":0.9474236670680127,"train_loss":0.20363452676847432,"iteration":2160,"_runtime":22.541915927,"val_loss":0.04057771525393772,"val_acc":0.9467941592802652,"_step":2,"epoch":20}
