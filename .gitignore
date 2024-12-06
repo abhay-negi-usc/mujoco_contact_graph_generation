@@ -1,4 +1,9 @@
 results/
+*.log
+*.pth 
+*.pyc 
+wandb/ 
+
 *.obj
 *.mtl
 *.pyc
