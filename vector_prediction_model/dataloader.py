@@ -27,6 +27,8 @@ class BaseContactStateDataset(Dataset):
         self.filter_out_no_contact = filter_out_no_contact
         self.seed = seed
 
+        peg_type = 'plug_3_pin'
+
         # Initialize peg-hole class combinations
         if peg_type == 'key': 
             hole_classes = ['HF1','HF2','HE1','HE2','HE3','HE4','HE5','HE6','HV1','HV2','HV3','HV4'] 

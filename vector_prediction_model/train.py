@@ -1,6 +1,8 @@
 import argparse
 import json
-
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from vector_prediction_model.trainer import Pose2ContactStateTrainer 
 from vector_prediction_model.trainer import Wrench2ContactStateTrainer 
 

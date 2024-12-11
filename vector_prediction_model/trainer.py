@@ -220,8 +220,8 @@ class Wrench2ContactStateTrainer(BaseContactStateTrainer):
     def __init__(self, training_folder, training_param_dict):
         super().__init__(training_folder, training_param_dict)
 
-        N_classes = 39
-        self.model = BinaryVectorPredictor([11, 128, 128, N_classes]).to(self.device)
+        N_classes = 8 
+        self.model = BinaryVectorPredictor([11, 128, 128, 128, 128, N_classes]).to(self.device)
         self.optimizer = torch.optim.SGD(
             self.model.parameters(),
             lr=self.learning_rate,
