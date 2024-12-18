@@ -1,5 +1,6 @@
 from typing import List, Optional
 import numpy as np
+np.random.seed(69)
 
 from numpy.typing import NDArray
 from scipy.spatial import KDTree
