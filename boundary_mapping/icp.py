@@ -5,6 +5,7 @@ from numpy.typing import NDArray
 from scipy.spatial import KDTree
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
+from loguru import logger
 
 from boundary_mapping.util import *
 
@@ -254,7 +255,7 @@ class ContactPoseMap:
 
             if res[-1] < tol:
                 if flag_iteration_output:
-                    print(f"Converged at iteration {i}, residual: {res[-1]}")
+                    logger.debug(f"Converged at iteration {i}, residual: {res[-1]}")
                 break
 
             # Update poses for next iteration
@@ -270,7 +271,7 @@ class ContactPoseMap:
         self.max_err.append(max_err)
 
         if flag_iteration_output:
-            print(
+            logger.debug(
                 f"Progress: {guess_idx+1}/{len(self.initial_guesses)}, "
                 f"Res: {res[-1]}, MAE: {MAE[-1]}, Max Err: {max_err[-1]}"
             )

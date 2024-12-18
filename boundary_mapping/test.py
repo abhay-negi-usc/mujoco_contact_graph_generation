@@ -6,6 +6,7 @@ import pandas as pd
 from numpy.typing import NDArray
 from dataclasses import dataclass
 from scipy.spatial import KDTree
+from loguru import logger
 
 from boundary_mapping.util import *
 from boundary_mapping.icp import ContactPoseMap
@@ -154,7 +155,7 @@ class ContactPoseMapTester:
                 flag_plot_results=False,
             )
 
-            print(
+            logger.debug(
                 f"Iteration {i+1}/{self.n_test_iterations} - "
                 f"Final Transform Error: {self.contact_map.transform_final_error}"
             )
@@ -184,25 +185,29 @@ class ContactPoseMapTester:
         if self.contact_map is not None:
             self.contact_map.plot_map()
 
-        print("\nTest Results Summary:")
-        print(f"Mean Absolute Error: {results.mean_absolute_error}")
-        print(f"Standard Deviation of Error: {results.std_deviation_error}")
+        logger.debug("\nTest Results Summary:")
+        logger.debugf("Mean Absolute Error: {results.mean_absolute_error}")
+        logger.debugf("Standard Deviation of Error: {results.std_deviation_error}")
 
         # Additional visualizations could be added here
 
 
 if __name__ == "__main__":
 
-    
     # TODO: Input path to dataset
-    input_path = "path/to/dataset.csv"
+    input_path = "/home/dhanush/mujoco_contact_graph_generation/contact_data/cross_peg_contact_mapping_real.csv"
 
-    # Load dataset
-    map_df = pd.read_csv(input_path)
-    
+    # Real dataset
+    real_df = pd.read_csv(input_path)
+    real_df.rename(
+        columns={"X": "x", "Y": "y", "Z": "z", "A": "a", "B": "b", "C": "c"},
+        inplace=True,
+    )
+    real_df = real_df[real_df["contact"] == True]
+
     # Initialize tester
     tester = ContactPoseMapTester(
-        map_data=map_df[["x", "y", "z", "a", "b", "c"]].values,
+        map_data=real_df[["x", "y", "z", "a", "b", "c"]].values,
         n_downsampled_poses=100_000,
         n_test_iterations=10,
     )
