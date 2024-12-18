@@ -350,3 +350,46 @@ def compute_transformation_update(T_r_t, T_R_t_correspondences, T_r_S):
     T_r_S_new = apply_delta_pose_batch(T_r_S, T_R_r_mean.reshape(1, -1))
 
     return T_r_t_new[0], T_r_S_new[0], T_R_r_mean
+
+
+@njit(fastmath=True)
+def compute_mean_pose_fast(poses):
+    """Compute mean of poses with explicit loops."""
+    if poses.ndim == 1:
+        return poses
+
+    mean_pose = np.zeros(6, dtype=np.float64)
+    n_poses = poses.shape[0]
+
+    for i in range(6):
+        sum_val = 0.0
+        for j in range(n_poses):
+            sum_val += poses[j, i]
+        mean_pose[i] = sum_val / float(n_poses)
+
+    return mean_pose
+
+
+@njit(fastmath=True)
+def compute_delta_pose_fast(P_s: PoseArray, P_t: PoseArray) -> PoseArray:
+    """Compute delta pose between source and target pose sets.
+    Args:
+        P_s: Source poses [N, 6]
+        P_t: Target poses [N, 6]
+    Returns:
+        Delta pose [6]
+    """
+    # Compute mean poses
+    mean_pose_s = compute_mean_pose_fast(P_s)
+    mean_pose_t = compute_mean_pose_fast(P_t)
+
+    # Convert to transforms
+    T_s = pose6D2transform_fast(mean_pose_s)
+    T_t = pose6D2transform_fast(mean_pose_t)
+
+    # Compute inverse and multiplication
+    T_t_inv = np.linalg.inv(T_t)
+    T_delta = np.dot(T_t_inv, T_s)
+
+    # Convert back to pose
+    return transform2pose6D_fast(T_delta)
