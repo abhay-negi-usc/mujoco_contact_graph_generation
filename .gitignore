@@ -8,3 +8,6 @@ wandb/
 *.obj
 *.mtl
 *.pyc
+
+# NOTE(dhanush): My data directory on personal machine
+contact_data/
