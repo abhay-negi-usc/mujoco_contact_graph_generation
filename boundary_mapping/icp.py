@@ -49,37 +49,41 @@ class ContactPoseMap:
         self.kdtree = KDTree(self.map)
 
     def plot_map(self) -> None:
-        """Plot 3D visualization of pose map colored by rotation components."""
+        """Plot 3D visualization of pose map with three subplots for rotation components."""
         x, y, z = self.map[:, 0], self.map[:, 1], self.map[:, 2]
         a, b, c = self.map[:, 3], self.map[:, 4], self.map[:, 5]
 
-        fig = plt.figure()
-        point_size = 1.0
+        # Create figure with three subplots
+        fig = plt.figure(figsize=(15, 10))
 
-        # Create three 3D subplots for different rotation components
-        ax0 = fig.add_subplot(2, 2, 1, projection="3d")
-        ax1 = fig.add_subplot(2, 2, 2, projection="3d")
-        ax2 = fig.add_subplot(2, 1, 2, projection="3d")
+        # First subplot: x,y,z colored by 'a'
+        ax1 = fig.add_subplot(2, 2, 1, projection="3d")
+        scatter1 = ax1.scatter(x, y, z, c=a, cmap="viridis", s=1)
+        ax1.set_xlabel("X")
+        ax1.set_ylabel("Y")
+        ax1.set_zlabel("Z")
+        ax1.set_title("Poses colored by rotation A")
+        plt.colorbar(scatter1, ax=ax1)
 
-        # Plot rotation components with different colors
-        self._add_subplot_scatter(ax0, x, y, z, a, "a", point_size)
-        self._add_subplot_scatter(ax1, x, y, z, b, "b", point_size)
-        self._add_subplot_scatter(ax2, x, y, z, c, "c", point_size)
+        # Second subplot: x,y,z colored by 'b'
+        ax2 = fig.add_subplot(2, 2, 2, projection="3d")
+        scatter2 = ax2.scatter(x, y, z, c=b, cmap="viridis", s=1)
+        ax2.set_xlabel("X")
+        ax2.set_ylabel("Y")
+        ax2.set_zlabel("Z")
+        ax2.set_title("Poses colored by rotation B")
+        plt.colorbar(scatter2, ax=ax2)
 
-        def on_plot_move(event: plt.MouseEvent) -> None:
-            """Synchronize view angles across all subplots."""
-            source_ax = event.inaxes
-            if source_ax in [ax0, ax1, ax2]:
-                axes = [ax0, ax1, ax2]
-                for ax in axes:
-                    if ax != source_ax:
-                        ax.view_init(elev=source_ax.elev, azim=source_ax.azim)
-                        ax.set_xlim(source_ax.get_xlim())
-                        ax.set_ylim(source_ax.get_ylim())
-                        ax.set_zlim(source_ax.get_zlim())
-                plt.draw()
+        # Third subplot: x,y,z colored by 'c'
+        ax3 = fig.add_subplot(2, 1, 2, projection="3d")
+        scatter3 = ax3.scatter(x, y, z, c=c, cmap="viridis", s=1)
+        ax3.set_xlabel("X")
+        ax3.set_ylabel("Y")
+        ax3.set_zlabel("Z")
+        ax3.set_title("Poses colored by rotation C")
+        plt.colorbar(scatter3, ax=ax3)
 
-        fig.canvas.mpl_connect("motion_notify_event", on_plot_move)
+        # Adjust layout and display
         plt.tight_layout()
         plt.show()
 
