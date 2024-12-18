@@ -186,8 +186,8 @@ class ContactPoseMapTester:
             self.contact_map.plot_map()
 
         logger.debug("\nTest Results Summary:")
-        logger.debugf("Mean Absolute Error: {results.mean_absolute_error}")
-        logger.debugf("Standard Deviation of Error: {results.std_deviation_error}")
+        logger.debug(f"Mean Absolute Error: {results.mean_absolute_error}")
+        logger.debug(f"Standard Deviation of Error: {results.std_deviation_error}")
 
         # Additional visualizations could be added here
 
@@ -215,5 +215,5 @@ if __name__ == "__main__":
     # Run tests
     results = tester.run_tests()
 
-    # Visualize results
-    tester.visualize_results(results)
+    # Visualize results, FIXME
+    # tester.visualize_results(results)

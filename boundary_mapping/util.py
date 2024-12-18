@@ -4,6 +4,7 @@ import numpy as np
 from scipy.spatial import KDTree
 from scipy.spatial.transform import Rotation as R
 from numpy.typing import NDArray
+from numba import jit, njit, prange
 
 PoseArray = NDArray[np.float64]
 TransformMatrix = NDArray[np.float64]
@@ -239,3 +240,113 @@ def invert_pose6D(poses: PoseArray) -> PoseArray:
     for i in range(poses.shape[0]):
         poses_inv[i] = transform2pose6D(np.linalg.inv(pose6D2transform(poses[i])))
     return poses_inv
+
+
+# Core matrix operations
+
+
+@njit(fastmath=True)
+def ensure_2d(arr):
+    """Ensure array is 2D"""
+    if arr.ndim == 1:
+        return arr.reshape(1, -1)
+    return arr
+
+
+@njit(fastmath=True)
+def create_transform_matrix():
+    """Create a 4x4 identity matrix."""
+    T = np.zeros((4, 4), dtype=np.float64)
+    for i in range(4):
+        T[i, i] = 1.0
+    return T
+
+
+@njit(fastmath=True)
+def pose6D2transform_fast(pose):
+    """Optimized 6D pose to transform conversion."""
+    T = create_transform_matrix()
+    T[0, 3] = pose[0]
+    T[1, 3] = pose[1]
+    T[2, 3] = pose[2]
+    return T
+
+
+@njit(fastmath=True)
+def transform2pose6D_fast(T):
+    """Optimized transform to 6D pose conversion."""
+    pose = np.zeros(6, dtype=np.float64)
+    pose[0] = T[0, 3]
+    pose[1] = T[1, 3]
+    pose[2] = T[2, 3]
+    return pose
+
+
+@njit
+def apply_delta_pose_batch(poses, delta_pose):
+    """Optimized batch delta pose application."""
+    poses = ensure_2d(poses)
+    delta_pose = ensure_2d(delta_pose)
+
+    n_poses = poses.shape[0]
+    poses_new = np.zeros((n_poses, 6), dtype=np.float64)
+
+    T2 = pose6D2transform_fast(delta_pose[0])
+
+    for i in prange(n_poses):
+        T1 = pose6D2transform_fast(poses[i])
+        T_result = np.dot(T1, T2)
+        poses_new[i] = transform2pose6D_fast(T_result)
+
+    return poses_new
+
+
+@njit
+def invert_pose6D_batch(poses):
+    """Optimized batch pose inversion."""
+    poses = ensure_2d(poses)
+    n_poses = poses.shape[0]
+    poses_inv = np.zeros((n_poses, 6), dtype=np.float64)
+
+    for i in prange(n_poses):
+        T = pose6D2transform_fast(poses[i])
+        T_inv = np.linalg.inv(T)
+        poses_inv[i] = transform2pose6D_fast(T_inv)
+
+    return poses_inv
+
+
+@njit
+def compute_mean_pose(poses):
+    """Optimized pose averaging."""
+    poses = ensure_2d(poses)
+    mean_pose = np.zeros(6, dtype=np.float64)
+    n_poses = poses.shape[0]
+
+    for i in range(6):
+        sum_val = 0.0
+        for j in range(n_poses):
+            sum_val += poses[j, i]
+        mean_pose[i] = sum_val / float(n_poses)
+
+    return mean_pose
+
+
+@njit
+def compute_transformation_update(T_r_t, T_R_t_correspondences, T_r_S):
+    """Optimized transformation update computation."""
+    # Ensure all inputs are 2D arrays
+    T_r_t = ensure_2d(T_r_t)
+    T_R_t_correspondences = ensure_2d(T_R_t_correspondences)
+    T_r_S = ensure_2d(T_r_S)
+
+    # Compute transformation update
+    T_t_r = invert_pose6D_batch(T_r_t)
+    T_R_r = apply_delta_pose_batch(T_R_t_correspondences, T_t_r[0])
+    T_R_r_mean = compute_mean_pose(T_R_r)
+
+    # Apply transformations
+    T_r_t_new = apply_delta_pose_batch(T_r_t, T_R_r_mean.reshape(1, -1))
+    T_r_S_new = apply_delta_pose_batch(T_r_S, T_R_r_mean.reshape(1, -1))
+
+    return T_r_t_new[0], T_r_S_new[0], T_R_r_mean
