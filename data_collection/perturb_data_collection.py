@@ -8,20 +8,23 @@ import pickle
 import os 
 import cv2 
 
+# hyperparameters 
 geometry = "cross" # "extrusion" "cross" "plug_3_pin" 
 dir_results = f"./results/{geometry}_data/perturb"  
 xml_path = f"./env/{geometry}_env.xml" 
+peg_length = 0.025 
+num_trials = 25 # 1k points ~ 27 minutes with videos, 30 seconds without videos 
+
 model = mujoco.MjModel.from_xml_path(xml_path)
 data = mujoco.MjData(model)
-num_trials = 25 # 1k points ~ 27 minutes with videos, 30 seconds without videos 
 flag_show_video = False
-flag_save_video = True 
+flag_save_video = False  
 
 os.makedirs(dir_results + "/pkl", exist_ok=True)
 if flag_save_video: 
     os.makedirs(dir_results + "/vid", exist_ok=True)
 
-n_frames = 300   
+n_frames = 500    
 height = 720 
 width = 960
 frames = []
@@ -45,7 +48,7 @@ for idx_trial in range(num_trials):
     # define initial conditions 
     x0 = np.random.uniform(-3, +3) * (1e-3) 
     y0 = np.random.uniform(-3, +3) * (1e-3) 
-    z0 = np.random.uniform(+25, +30) * (1e-3) 
+    z0 = np.random.uniform(-10, +5) * (1e-3) + peg_length 
     a0 = np.random.uniform(-5.0, +5.0) * (np.pi/180)  
     b0 = np.random.uniform(-5.0, +5.0) * (np.pi/180)  
     c0 = np.random.uniform(-5.0, +5.0) * (np.pi/180) 
@@ -69,7 +72,9 @@ for idx_trial in range(num_trials):
     sensor_hist = np.zeros((n_frames,13))
 
     # define controller parameters  
-    z_step = 1e-6
+    z_step = 1e-4
+    # initialize random signs 
+    random_signs = np.random.choice([-1, 1], size=5)
 
     if flag_save_video: 
         # Initialize video writer
@@ -114,16 +119,17 @@ for idx_trial in range(num_trials):
             psi = 7 * ii 
             tau = ii 
             r = 1.0e-9 
-            delta_x = r * np.cos(tau) * peg_x_axis 
-            delta_y = r * np.sin(tau) * peg_y_axis 
-            delta_z = -i * z_step * peg_z_axis 
+            delta_x = r * np.cos(tau) * peg_x_axis * random_signs[0]
+            delta_y = r * np.sin(tau) * peg_y_axis * random_signs[1]
+            delta_z = -z_step * peg_z_axis 
             delta_pos = delta_x + delta_y + delta_z 
-            delta_a = 5.0 * np.sin(theta)
-            delta_b = 5.0 * np.sin(phi)
-            delta_c = 5.0 * np.sin(psi) 
+            delta_a = 5.0 * np.sin(theta) * random_signs[2] 
+            delta_b = 5.0 * np.sin(phi) * random_signs[3] 
+            delta_c = 5.0 * np.sin(psi) * random_signs[4] 
             delta_angle = np.array([delta_a, delta_b, delta_c]) * np.pi/180 
-            delta_pose_tool = np.concatenate([delta_pos, delta_angle]) 
-            data.ctrl = data.qpos + delta_pose_tool 
+            delta_pose_tool = np.concatenate([delta_pos, delta_angle])
+            noise = np.concatenate([np.random.normal(0, 0.1, 2)*1e-3, np.random.normal(0, 0.01, 1)*1e-3, np.random.normal(0, 1, 3)*np.pi/180])  
+            data.ctrl = data.qpos + delta_pose_tool + noise 
                 
         if flag_show_video: 
             media.show_video(frames, fps=30)
