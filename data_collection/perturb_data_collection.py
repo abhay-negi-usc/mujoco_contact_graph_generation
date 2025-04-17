@@ -9,11 +9,11 @@ import os
 import cv2 
 
 # hyperparameters 
-geometry = "cross" # "extrusion" "cross" "plug_3_pin" 
-dir_results = f"./results/{geometry}_data/perturb"  
+geometry = "slotted_circle_rounded" # "extrusion" "cross" "plug_3_pin" 
+dir_results = f"/media/rp/Elements/abhay_ws/mujoco_contact_graph_generation/results/{geometry}_data/perturb_v3"  
 xml_path = f"./env/{geometry}_env.xml" 
 peg_length = 0.025 
-num_trials = 25 # 1k points ~ 27 minutes with videos, 30 seconds without videos 
+num_trials = 250_000 # 1k points ~ 27 minutes with videos, 30 seconds without videos 
 
 model = mujoco.MjModel.from_xml_path(xml_path)
 data = mujoco.MjData(model)
@@ -48,7 +48,7 @@ for idx_trial in range(num_trials):
     # define initial conditions 
     x0 = np.random.uniform(-3, +3) * (1e-3) 
     y0 = np.random.uniform(-3, +3) * (1e-3) 
-    z0 = np.random.uniform(-10, +5) * (1e-3) + peg_length 
+    z0 = np.random.uniform(-10, +10) * (1e-3) + peg_length 
     a0 = np.random.uniform(-5.0, +5.0) * (np.pi/180)  
     b0 = np.random.uniform(-5.0, +5.0) * (np.pi/180)  
     c0 = np.random.uniform(-5.0, +5.0) * (np.pi/180) 

@@ -14,7 +14,7 @@ def main():
         help="Training Params Filename",
     )
 
-    args = parser.parse_args()
+    args = parser.parse_args()c
 
     training_folder = "data/training" # FIXME: doesn't matter for now but should be updated later 
     training_params_file = args.training_params_file
